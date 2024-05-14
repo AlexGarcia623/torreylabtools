@@ -9,7 +9,7 @@ def get_particle_hsml( x, y, z, DesNgb=32, Hmax=0. , **kwargs ):
     ok=(util.cast.ok_scan(x) & util.cast.ok_scan(y) & util.cast.ok_scan(z)); x=x[ok]; y=y[ok]; z=z[ok];
     if(Hmax==0.):
         dx=np.max(x)-np.min(x); dy=np.max(y)-np.min(y); dz=np.max(z)-np.min(z); ddx=np.max([dx,dy,dz]);
-        Hmax=5.*ddx*(np.float(N)**(-1./3.)); ## mean inter-particle spacing
+        Hmax=5.*ddx*(float(N)**(-1./3.)); ## mean inter-particle spacing
     
     ## load the routine we need
     exec_call=util.dir.c_routines_dir()+'/StellarHsml/starhsml.so'
@@ -45,7 +45,7 @@ def get_gas_density_around_stars( x_gas, y_gas, z_gas, m_gas, x_star, y_star, z_
     
     if(Hmax==0.):
         dx=np.max(x_gas)-np.min(x_gas); dy=np.max(y_gas)-np.min(y_gas); dz=np.max(z_gas)-np.min(z_gas); ddx=np.max([dx,dy,dz]);
-        Hmax=5.*ddx*(np.float(N_gas)**(-1./3.)); ## mean inter-particle spacing
+        Hmax=5.*ddx*(float(N_gas)**(-1./3.)); ## mean inter-particle spacing
     
     ## load the routine we need
     exec_call=util.dir.c_routines_dir()+'/StellarGasDensity/stargasdensity.so'
@@ -82,7 +82,7 @@ def get_gas_temperature_around_stars( x_gas, y_gas, z_gas, m_gas, rho_gas, u_gas
 
     if(Hmax==0.):
         dx=np.max(x_gas)-np.min(x_gas); dy=np.max(y_gas)-np.min(y_gas); dz=np.max(z_gas)-np.min(z_gas); ddx=np.max([dx,dy,dz]);
-        Hmax=5.*ddx*(np.float(N_gas)**(-1./3.)); ## mean inter-particle spacing
+        Hmax=5.*ddx*(float(N_gas)**(-1./3.)); ## mean inter-particle spacing
 
     ## load the routine we need
     exec_call=util.dir.c_routines_dir()+'/StellarGasTemperature/stargasavg.so'
